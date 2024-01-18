@@ -1,0 +1,77 @@
+<html>
+<head>
+
+<title>weather app</title>
+<style>
+.tb1{
+	border:2px solid black;
+	width:25%;
+	height:25%;
+	box-shadow:10px 10px 10px grey;
+	background-image: url("weather1.jpg");
+	background-size:cover;
+	background-repeat:no-repeat;
+}
+body{
+	background-color:lightgrey;
+}
+
+
+</style>
+
+</head>
+<body>
+<h1 align="center">welcome to the weather app</h1>
+<center>
+<form class="tb1">
+	
+	<br>
+	<label>City Name :</label>
+	<input type='text' id='city'>
+	
+	<button type='submit' value='submit' id='submit'>get weather</button>
+	<p><span id='cityname'></span>  Temp : <span id='temp'></span></p>
+	
+</form>
+</center>
+
+
+<script>
+	const options = {
+	method: 'GET',
+	headers: {
+		'X-RapidAPI-Key': 'db0720b473mshcadbbbbc29c0d7ep1fcdeajsne35f6245355c',
+		'X-RapidAPI-Host': 'weather-by-api-ninjas.p.rapidapi.com'
+	}
+};
+
+const weatherapp = (city) => {
+
+	cityname.innerHTML = city
+	
+		fetch( 'https://weather-by-api-ninjas.p.rapidapi.com/v1/weather?city=' + city , options)
+		
+				.then((response) => {
+					return response.json()
+					
+				}).then((data) => {
+				
+					console.log(data)
+					
+					temp.innerHTML = data.temp
+				})
+		
+		
+		}
+			submit.addEventListener('click', (e) => {
+				e.preventDefault()
+				weatherapp(city.value)
+			})
+			weatherapp('pune')
+
+
+
+
+</script>
+</body>
+</html>
